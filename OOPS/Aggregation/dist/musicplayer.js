@@ -1,82 +1,58 @@
+"use strict";
 class User {
-    private name: string;
-    private playlists: PlayList[] = [];
-
-    constructor(name: string) {
+    constructor(name) {
+        this.playlists = [];
         this.name = name;
     }
-
-    createPlaylist(plname: PlayList): void {
+    createPlaylist(plname) {
         this.playlists.push(plname);
     }
-
-    displayPlaylists(): void {
+    displayPlaylists() {
         console.log(`${this.name} has the following playlists`);
-
         for (const p of this.playlists) {
             console.log(p.getName());
         }
     }
 }
-
 class PlayList {
-    private name: string;
-    private song: Song[] = [];
-
-    constructor(name: string) {
+    constructor(name) {
+        this.song = [];
         this.name = name;
     }
-
-    getName(): string {
+    getName() {
         return this.name;
     }
-
-    addSong(songname: Song): void {
+    addSong(songname) {
         this.song.push(songname);
         console.log(`Song ${songname.getName()} added successfully to ${this.name}`);
     }
-
-    deleteSong(songname: Song): void {
+    deleteSong(songname) {
         this.song = this.song.filter(e => e !== songname);
         console.log(`Song ${songname.getName()} deleted successfully from ${this.name}`);
     }
-
-    displaySongs(): void {
+    displaySongs() {
         console.log(`Songs in ${this.name}:`);
-
         for (const s of this.song) {
             console.log(s.getName());
         }
     }
 }
-
 class Song {
-    private name: string;
-    private duration: number;
-
-    constructor(name: string, duration: number) {
+    constructor(name, duration) {
         this.name = name;
         this.duration = duration;
     }
-
-    getName(): string {
+    getName() {
         return this.name;
     }
 }
-
 const s1 = new Song("wdkjl", 3);
 const s2 = new Song("sd", 4);
-
 const user = new User("Shivam");
-
 const playlist = new PlayList("MyPL");
-
 user.createPlaylist(playlist);
-
 playlist.addSong(s1);
 playlist.addSong(s2);
-
 playlist.displaySongs();
 playlist.deleteSong(s1);
-
 playlist.displaySongs();

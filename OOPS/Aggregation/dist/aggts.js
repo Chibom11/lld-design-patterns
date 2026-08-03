@@ -1,4 +1,9 @@
 "use strict";
+// Pay attention to three things in this code:
+// Department groups Professor objects, but it does not create them. The professors are created externally and passed into the department's constructor.
+// The professors exist before the department is created and survive after the department is deleted. Their lifecycle is independent.
+// The same professor objects could be passed to another Department constructor. A professor can belong to multiple departments.
+// If you delete the csDept object, the professors still exist in memory and could be reassigned to another department. That's aggregation in action.
 class Professor {
     constructor(name) {
         this.name = name;
